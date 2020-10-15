@@ -1,5 +1,3 @@
-# 1주차 실습 
-
 # f(x) = (1-cos x)/x^2: 0근방에서 부동소수점연산에 의해 오차가 생김
 
 evaluatefunction1 = function(xmin,xmax,n){
