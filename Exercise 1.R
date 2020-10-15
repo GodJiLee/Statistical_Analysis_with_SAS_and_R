@@ -73,7 +73,7 @@ polyevalimproved = function(a,x0){
   n = length(a) - 1
   polyvalue = a[1]
   powersofx0 = 1
-  for (j in (1:n)){
+  for (j in (1:n)){ 
     powersofx0 = x0*powersofx0
     polyvalue = polyvalue + a[j+1]*powersofx0
   }
