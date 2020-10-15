@@ -1,0 +1,134 @@
+# 1주차 실습 
+
+# f(x) = (1-cos x)/x^2: 0근방에서 부동소수점연산에 의해 오차가 생김
+
+evaluatefunction1 = function(xmin,xmax,n){
+  x = c(0)
+  f = c(0)
+  for (i in (0:n)){
+    x[i+1] = xmin + i*(xmax-xmin)/n
+    f[i+1] = (1-cos(x[i+1]))/(x[i+1])^2
+  }
+  plot(x,f,type="l",col="blue",xlab="x",ylab="function")
+}
+
+# -1~1범위에서 100구간으로 나눠 plot을 그림 
+evaluatefunction1(-1,1,100)
+
+# 0부근을 확대해서 확인 
+evaluatefunction1(-10^-7, 10^-7, 200) # 수치적 오차 (0근처에서 불안정한 계산)
+
+
+
+# 동치인 함수 f(x) = (sin^2(x/2))/(x^2/2)를 고려하면 0근처에서 
+# 오차의 영향을 줄일 수 있지만 0에서 불연속 0/0 꼴이므로 
+evaluatefunction2 = function(xmin,xmax,n){
+  x = c(0)
+  f = c(0)
+  for (i in (0:n)){
+    x[i+1] = xmin + i*(xmax-xmin)/n
+    f[i+1] = (sin(x[i+1]/2))^2/((x[i+1])^2/2)
+  }
+  plot(x,f,type="l",col="blue",xlab="x",ylab="function")
+}
+
+# 1보다는 출렁이지 않음 # 좀 더 안정적
+
+evaluatefunction2(-10^-7, 10^-7, 200) 
+
+
+# f(x) = (sin^2(x/2))/(x^2/2)을 0에서 연속이 되도록 정의
+# epsilon 범위에 있는 값들은 1/2로 처리함 
+evaluatefunction2withcheck = function(xmin,xmax,n,epsilon){
+  x = c(0)
+  f = c(0)
+  for (i in (0:n)){
+    x[i+1] = xmin + i*(xmax-xmin)/n
+    if (abs(x[i+1]) > epsilon){
+      f[i+1] = (sin(x[i+1]/2))^2/((x[i+1])^2/2)
+    }
+    else{
+      f[i+1] = 1/2 # 여기에서 
+    }
+  }
+  plot(x,f,type="l",col="blue",xlab="x",ylab="function")
+}
+
+# 불연속성 문제도 해결결
+evaluatefunction2withcheck(-10^-7, 10^-7, 200, 10^-10)
+evaluatefunction2withcheck(-1, 1, ,200, 10^-10)
+
+## n차 다항식의 계산
+# 직접 계산
+# a0+a1x+...+anx^n
+polyeval = function(a,x0){
+  n = length(a) - 1
+  polyvalue = a[1]
+  for (j in (1:n)){
+    polyvalue = polyvalue + a[j+1]*(x0)^j
+  }
+  return(polyvalue)
+}
+
+# 멱급수 계산을 하지 않도록 수정
+polyevalimproved = function(a,x0){
+  n = length(a) - 1
+  polyvalue = a[1]
+  powersofx0 = 1
+  for (j in (1:n)){
+    powersofx0 = x0*powersofx0
+    polyvalue = polyvalue + a[j+1]*powersofx0
+  }
+  return(polyvalue)
+}
+
+# Horner의 알고리즘
+polyevalhorner = function(a,x0){
+  n = length(a) - 1
+  polyeval = a[n+1]
+  for (j in (1:n)){
+    polyeval = a[n+1-j] + x0*polyeval
+  }
+  return(polyeval)
+}
+
+# p(x) = (x-2)^{10}를 $x=2.01$에서 계산하는 경우 계산결과가 
+# rounding error에 의해 달라짐
+a = c(1024, -5120, 11520, -15360, 13440, -8064, 3360, -960, 180, -20, 1)
+polyeval(a, 2.01)
+polyevalimproved(a, 2.01)
+polyevalhorner(a, 2.01)
+
+# p(x) = (x-1)^3 = x^3 - 3x^2 + 3x - 1를 x=1에서 계산
+polyevalhornermultiple = function(a,xmin,xmax,n){
+  x = c(0)
+  y = c(0)
+  for (i in (0:n)){
+    x[i+1] = xmin + i*(xmax-xmin)/n
+    y[i+1] = polyevalhorner(a,x[i+1])
+  }
+  plot(x,y,type="l",col="blue",xlab="x",ylab="function",cex.axis=1.5,cex.lab=1.5)
+}
+
+polyevalhornermultiple(-c(1,-3,3,-1), 0.99999, 1.00001, 200)
+curve((x-1)^3, from=0.99999, to=1.00001)
+
+## 행렬계산
+# epsilon이 작은 경우
+epsilon = 10^-10
+A = matrix(c(1, epsilon, 0, 1, 0, epsilon), nrow=3)
+A
+B = t(A) %*% A
+B
+
+epsilon = 10^-10
+v = c(1, epsilon, -1)
+w = c(1, epsilon, 1)
+t(v) %*% w
+
+
+## 실수의 비교시 주의
+
+isTRUE(all.equal(.2, .3 - .1))
+all.equal(.2, .3)         
+isTRUE(all.equal(.2, .3)) 
