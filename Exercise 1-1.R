@@ -29,7 +29,7 @@ evaluatefunction2withcheck = function(xmin,xmax,n,epsilon){
   f = c(0)
   for (i in (0:n)){
     x[i+1] = xmin + i*(xmax-xmin)/n
-    if (abs(x[i+1]) > epsilon){
+    if (abs(x[i+1]) > epsilon){ 
       f[i+1] = sin(x[i+1])/x[i+1]
     }
     else{
