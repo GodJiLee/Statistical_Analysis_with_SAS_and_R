@@ -22,7 +22,7 @@ proc print data = pcscores;
 	var Prin1 -- Prin15;
 run;
 
-proc univariate data = pcscores plot;
+proc univariate data = pcscores plot; 
 	var Prin1 -- Prin4;
 run;
 
