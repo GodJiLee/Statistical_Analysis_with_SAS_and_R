@@ -1,7 +1,5 @@
-/*½Ç½À ¿¹Á¦ #3 - ÁÖ¼ººĞ ºĞ¼®*/
-
-/*1. ÁÖ¼ººĞ ºĞ¼®*/
-/*1.1 ¿¹Á¦ 1*/
+/*1. ì£¼ì„±ë¶„ ë¶„ì„*/
+/*1.1 ì˜ˆì œ 1*/
 
 proc import datafile = 'C:\Users\uos\Desktop\applicant.csv' dbms = csv out = applicant replace;
 run;
@@ -38,7 +36,7 @@ proc g3d data = pcscores;
 run;
 
 
-/*1.2 ¿¹Á¦2 [ÇÁ·Î±×·¥ 7.1]*/
+/*1.2 ì˜ˆì œ2*/
 proc import datafile = 'C:\Users\uos\Desktop\headsize.csv' dbms = csv out = headsize;
 run;
 proc print data = headsize (obs = 10);
@@ -75,7 +73,7 @@ proc princomp data = headsize out = headsize_cov COV;
 run;
 
 
-/* [ÇÁ·Î±×·¥ 7.2] ½É¸®ÀÚ·á¿¡ ´ëÇÑ ÁÖ¼ººĞ ºĞ¼® (¿¹Á¦ 7.5)*/
+/* ì‹¬ë¦¬ìë£Œì— ëŒ€í•œ ì£¼ì„±ë¶„ ë¶„ì„ (ì˜ˆì œ 7.5)*/
 data pschy;
 	infile 'C:\Users\uos\Desktop\pschy.csv' dlm = ',' firstobs = 2;
 	input gender x1 x2 x3 x4;
