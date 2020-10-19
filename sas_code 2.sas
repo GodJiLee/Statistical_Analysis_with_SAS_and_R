@@ -1,7 +1,7 @@
-/*½Ç½À ¿¹Á¦ #2 - ´Ùº¯·® ºĞ»ê ºĞ¼®*/
+/*ë‹¤ë³€ëŸ‰ ë¶„ì‚° ë¶„ì„*/
 
 
-/*1. ÀÏº¯·® ºĞ»ê ºĞ¼®*/
+/*1. ì¼ë³€ëŸ‰ ë¶„ì‚° ë¶„ì„*/
 proc import datafile = 'C:\Users\samsung\Desktop\roots.csv' out = roots
 dbms = csv replace;
 	getnames = yes;
@@ -51,7 +51,7 @@ run;
 
 
 
-/*´Ùº¯·® ºĞ»ê ºĞ¼®*/
+/*ë‹¤ë³€ëŸ‰ ë¶„ì‚° ë¶„ì„*/
 proc anova data = roots;
 	class stock;
 	model girth4 growth girth15 weight = stock;
@@ -89,7 +89,7 @@ run;
 proc print data = rabbit (obs = 10);
 run;
 
-/*[ÇÁ·Î±×·¥ 6.1] ÀÏ¿ø¹èÄ¡ ºĞ»êºĞ¼® ÇÁ·Î±×·¥ */
+/*[í”„ë¡œê·¸ë¨ 6.1] ì¼ì›ë°°ì¹˜ ë¶„ì‚°ë¶„ì„ í”„ë¡œê·¸ë¨ */
 proc anova data = rabbit;
 	class group;
 	model x1 x2 = group;
