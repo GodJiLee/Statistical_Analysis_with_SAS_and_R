@@ -29,7 +29,7 @@ se <- sqrt(sum((g-mean(g))^2))/m # se of mse
 mse
 se
 
-
+ 
 # 중앙값의 MSE # median
 n <- 20 # 9개씩 버려야 함
 m <- 1000
