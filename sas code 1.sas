@@ -59,7 +59,7 @@ run;
 proc univariate data = headsize_comp plot;
 run;
 
-proc gplot data = headsize_comp;
+proc gplot data = headsize_comp; 
 	plot second_son * first_son;
 run;
 /*principal component graph*/
