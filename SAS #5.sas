@@ -1,6 +1,6 @@
-/* ½Ç½À ¿¹Á¦ #5 - Á¤ÁØ»ó°üºĞ¼® */
+/* ì‹¤ìŠµ ì˜ˆì œ #5 - ì •ì¤€ìƒê´€ë¶„ì„ */
 
-/* ¿¹Á¦ 1 - °­ÀÇÀÚ·á */
+/* ì˜ˆì œ 1 - ê°•ì˜ìë£Œ */
 title 'Canonical Correlation Analysis';
 data skull (type = corr);
 	_type_ = 'CORR';
@@ -17,7 +17,7 @@ proc cancorr data = skull vprefix = head wprefix = leg;
 run;
 
 
-/* ¿¹Á¦ 2 - [ÇÁ·Î±×·¥ 9.1] */
+/* ì˜ˆì œ 2 - [í”„ë¡œê·¸ë¨ 9.1] */
 proc import datafile = 'C:\Users\samsung\Desktop\chem.csv' out = chem dbms = csv replace;
 run;
 
@@ -32,7 +32,7 @@ run;
 
 
 
-/* ¿¹Á¦ 3 - diabetes data */
+/* ì˜ˆì œ 3 - diabetes data */
 proc import datafile = 'C:\Users\samsung\Desktop\diabetes.csv' out = diabetes dbms = csv replace;
 run;
 proc print data = diabetes (obs = 10);
