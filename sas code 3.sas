@@ -72,7 +72,7 @@ proc anova data = roots;
 	manova h = stock / printh;
 run;
 
-
+ 
 proc anova data = roots;
 	class stock;
 	model girth4 growth girth15 weight = stock;
