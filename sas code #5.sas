@@ -28,7 +28,7 @@ proc cancorr data = chem out = chem1
 	with y1 y2;
 run;
 proc print data = chem1;
-run;
+run; 
 
 
 
