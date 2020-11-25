@@ -1,9 +1,9 @@
-## boot ÇÔ¼ö
+## boot í•¨ìˆ˜
 library(boot)
 install.packages("bootstrap")
 library(bootstrap)
 
-## Ç¥ÁØ¿ÀÂ÷¿¡ ´ëÇÑ º×½ºÆ®·¦ ÃßÁ¤
+## í‘œì¤€ì˜¤ì°¨ì— ëŒ€í•œ ë¶“ìŠ¤íŠ¸ë© ì¶”ì •
 data(law)
 data(law82)
 cor(law$LSAT, law$GPA)
@@ -13,7 +13,7 @@ B = 200
 n = nrow(law)
 R = numeric(B)
 
-# Á÷Á¢ º×½ºÆ®·¦ ±¸Çö
+# ì§ì ‘ ë¶“ìŠ¤íŠ¸ë© êµ¬í˜„
 for (b in 1:B) {
   i = sample(1:n, size=n, replace=T)
   LSAT = law$LSAT[i]
@@ -23,15 +23,15 @@ for (b in 1:B) {
 print(se.R <- sd(R))
 hist(R, prob=TRUE)
 
-# boot ÇÔ¼ö ÀÌ¿ë
+# boot í•¨ìˆ˜ ì´ìš©
 r = function(x, i) {
   cor(x[i,1], x[i,2])
 }
 
-obj = boot(data=law, statistic=r, R=2000) # R=Bº×½ºÆ®·¦ ¹İº¹¼ö
+obj = boot(data=law, statistic=r, R=2000) # R=Bë¶“ìŠ¤íŠ¸ë© ë°˜ë³µìˆ˜
 obj
 
-## ÆíÀÇ¿¡ ´ëÇÑ º×½ºÆ®·¦ ÃßÁ¤
+## í¸ì˜ì— ëŒ€í•œ ë¶“ìŠ¤íŠ¸ë© ì¶”ì •
 theta.hat = cor(law$LSAT, law$GPA)
 B = 2000
 n = nrow(law)
@@ -70,37 +70,37 @@ quantile(std, probs=c(0.025, 0.975))
 
 ## jackknife for patch data
 data(law, package = "bootstrap")
-n = nrow(law) # µ¥ÀÌÅÍ ¼ö 
+n = nrow(law) # ë°ì´í„° ìˆ˜ 
 y = law$LSAT # old - plasibo
 z = law$GPA # new - old
 y
 z
 
-theta.hat = cor(y, z) # ±âÁØ
+theta.hat = cor(y, z) # ê¸°ì¤€
 theta.hat
 
-# ÆíÀÇ
+# í¸ì˜
 theta.jack = numeric(n)
 for (i in 1:n)
-  theta.jack[i] = cor(y[-i], z[-i]) # Àè³ªÀÌÇÁ Àû¿ë
+  theta.jack[i] = cor(y[-i], z[-i]) # ì­ë‚˜ì´í”„ ì ìš©
 bias = (n-1) * (mean(theta.jack) - theta.hat)
 bias
 theta.jack
 
-# Ç¥ÁØ¿ÀÂ÷
+# í‘œì¤€ì˜¤ì°¨
 se = sqrt((n-1)*mean((theta.jack-mean(theta.jack))^2))
 print(se)
 # ==========================================
 
-# ¹®Ç× 2=======================================
+# ë¬¸í•­ 2=======================================
 
 aircondit
 
-## boot ÇÔ¼ö
+## boot í•¨ìˆ˜
 library(boot)
 library(bootstrap)
 
-## Ç¥ÁØ¿ÀÂ÷¿¡ ´ëÇÑ º×½ºÆ®·¦ ÃßÁ¤
+## í‘œì¤€ì˜¤ì°¨ì— ëŒ€í•œ ë¶“ìŠ¤íŠ¸ë© ì¶”ì •
 B = 200
 n = nrow(aircondit)
 R = numeric(B)
@@ -110,7 +110,7 @@ meanx1 <- mean(x1)
 meanx1
 mean(aircondit$hours)
 
-# Á÷Á¢ º×½ºÆ®·¦ ±¸Çö
+# ì§ì ‘ ë¶“ìŠ¤íŠ¸ë© êµ¬í˜„
 
 for (b in 1:B) {
   i = sample(1:n, size = n, replace = T)
@@ -121,15 +121,15 @@ for (b in 1:B) {
 print(se.R <- sd(R))
 hist(R, prob=TRUE)
 
-# boot ÇÔ¼ö ÀÌ¿ë
+# boot í•¨ìˆ˜ ì´ìš©
 r = function(x, i) {
   1 / x[i,1]
 }
 
-obj = boot(data=aircondit, statistic=r, R=2000) # R=Bº×½ºÆ®·¦ ¹İº¹¼ö
+obj = boot(data=aircondit, statistic=r, R=2000) # R=Bë¶“ìŠ¤íŠ¸ë© ë°˜ë³µìˆ˜
 obj
 
-## ÆíÀÇ¿¡ ´ëÇÑ º×½ºÆ®·¦ ÃßÁ¤
+## í¸ì˜ì— ëŒ€í•œ ë¶“ìŠ¤íŠ¸ë© ì¶”ì •
 theta.hat = 1/ mean(aircondit$hours)
 B = 2000
 n = nrow(aircondit)
