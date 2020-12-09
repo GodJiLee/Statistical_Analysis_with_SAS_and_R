@@ -8,7 +8,7 @@ f <- function(x, sigma) { #랄리분포의 분포함수
 }
 
 m <- 10000 # N 
-sigma <- 4 # true 값
+sigma <- 4 # true 값 
 x <- numeric(m)
 x[1] <- rchisq(1, df=1) # x0 # 카이제곱 분펴ㅗ에서 난수 하나 발생
 k <- 0
