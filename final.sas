@@ -8,7 +8,7 @@ run;
 
 proc corr data = train cov;
 run;
-
+ 
 proc princomp data = train out = pcscores covariance;
 	var staff -- ect;
 	title 'raw data and the sample covariance matrix';
@@ -77,12 +77,6 @@ proc tree data=tree3;
 run; 
  
  
-
-
-
-
-
-
 
 
 
